@@ -30,6 +30,7 @@ services:
     image: api-node
     labels: 
       shipyard.route: '/api/node' 
+      shipyard.route.rewrite: true 
     build: 
       context: ../05-example-web-application/api-node
       dockerfile: ../../06-building-container-images/api-node/Dockerfile.8
@@ -44,7 +45,8 @@ services:
     restart: unless-stopped 
   api-golang: 
     labels: 
-      shipyard.route: '/api/golang' 
+      shipyard.route: '/api/golang'      
+      shipyard.route.rewrite: true 
     image: api-golang
     build: 
       context: ../05-example-web-application/api-golang
