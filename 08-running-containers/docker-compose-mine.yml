@@ -11,7 +11,10 @@ services:
       - frontend 
     ports: 
       - 5173:5173
-  client-react-nginx: 
+  client-react-nginx:
+    labels: 
+      shipyard.primary-route: true
+      shipyard.route: '/' 
     image: client-react-nginx 
     build: 
       context: ../05-example-web-application/client-react 
@@ -23,7 +26,10 @@ services:
       - 80:8080 
     restart: unless-stopped 
   api-node: 
+  
     image: api-node
+    labels: 
+      shipyard.route: '/api/node' 
     build: 
       context: ../05-example-web-application/api-node
       dockerfile: ../../06-building-container-images/api-node/Dockerfile.8
@@ -37,6 +43,8 @@ services:
       - 3000:3000 
     restart: unless-stopped 
   api-golang: 
+    labels: 
+      shipyard.route: '/api/golang' 
     image: api-golang
     build: 
       context: ../05-example-web-application/api-golang
